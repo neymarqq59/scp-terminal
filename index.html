@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCiPNET // SITE-19 [SCP-173]</title>
+  <meta name="description" content="SCP 基金会 SITE-19 异常收容与实时监控交互终端 — 多级安全权限破译、实时休谟指数示波器、收容室监控视口与应急响应系统。" />
+  <meta name="theme-color" content="#0B0D11" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="SCiPNET // SITE-19" />
+  <meta property="og:title" content="SCiPNET // SITE-19 机密交互终端" />
+  <meta property="og:description" content="SCP 基金会异常收容与实时监控交互终端：多级权限破译、休谟指数遥测、收容室实时监控视口与应急警报。" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SCiPNET // SITE-19 机密交互终端" />
+  <meta name="twitter:description" content="SCP 基金会异常收容与实时监控交互终端：多级权限破译、休谟指数遥测、收容室实时监控视口与应急警报。" />
+  <link id="site-favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20x%3D%271%27%20y%3D%271%27%20width%3D%2762%27%20height%3D%2762%27%20rx%3D%2710%27%20fill%3D%27%230B0D11%27%20stroke%3D%27%232C3545%27%20stroke-width%3D%272%27%2F%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%2723.5%27%20fill%3D%27none%27%20stroke%3D%27%23E8EEF5%27%20stroke-width%3D%274%27%20stroke-dasharray%3D%2733.22%2016%27%20transform%3D%27rotate(-70.5%2032%2032)%27%2F%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%2713%27%20fill%3D%27none%27%20stroke%3D%27%23E8EEF5%27%20stroke-width%3D%273.4%27%2F%3E%3Ccircle%20cx%3D%2732%27%20cy%3D%2732%27%20r%3D%273.8%27%20fill%3D%27%23FFB000%27%2F%3E%3Cg%20fill%3D%27%23FFB000%27%3E%3Cpolygon%20points%3D%2732%2C21%2025.5%2C12.5%2029.3%2C12.5%2029.3%2C4%2034.7%2C4%2034.7%2C12.5%2038.5%2C12.5%27%2F%3E%3Cpolygon%20points%3D%2732%2C21%2025.5%2C12.5%2029.3%2C12.5%2029.3%2C4%2034.7%2C4%2034.7%2C12.5%2038.5%2C12.5%27%20transform%3D%27rotate(120%2032%2032)%27%2F%3E%3Cpolygon%20points%3D%2732%2C21%2025.5%2C12.5%2029.3%2C12.5%2029.3%2C4%2034.7%2C4%2034.7%2C12.5%2038.5%2C12.5%27%20transform%3D%27rotate(240%2032%2032)%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body data-clearance="1" data-class="EUCLID">
+  <!-- Fullscreen CRT Scanlines, Vignette & Breach Glow Overlay (pointer-events: none) -->
+  <div class="crt-overlay" aria-hidden="true">
+    <div class="crt-scanlines"></div>
+    <div class="crt-vignette"></div>
+    <div class="breach-vignette"></div>
+  </div>
+
+  <!-- Fullscreen Berryman-Langford Memetic Kill Agent & Biometric Gate -->
+  <div class="boot-screen" id="boot-screen" role="dialog" aria-modal="true" aria-labelledby="boot-warning-title">
+    <div class="boot-curtain boot-curtain-top" aria-hidden="true"></div>
+    <div class="boot-curtain boot-curtain-bottom" aria-hidden="true"></div>
+    <div class="boot-reveal-beam" aria-hidden="true"></div>
+    <div class="boot-confirm-flash" id="boot-confirm-flash" aria-hidden="true"></div>
+
+    <div class="boot-stage" id="boot-stage">
+      <!-- Top Industrial Hazard Trim & Calibration Ruler -->
+      <div class="boot-hazard-trim boot-hazard-trim-top" aria-hidden="true"></div>
+      <div class="boot-ruler-strip boot-ruler-top mono" aria-hidden="true">
+        <span>SEC-04 // GATE-001</span>
+        <span>SCALE 1:100 // COGNITO-BARRIER</span>
+        <span>BL-GAMMA // LIVE</span>
+      </div>
+
+      <!-- Heavy Top Warning Header -->
+      <header class="boot-warning-bar">
+        <div class="boot-warning-brand">
+          <svg class="boot-scp-emblem" viewBox="0 0 64 64" width="42" height="42" aria-hidden="true">
+            <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-dasharray="32 10 32 10 32 10" transform="rotate(-18 32 32)" />
+            <circle cx="32" cy="32" r="14" fill="none" stroke="currentColor" stroke-width="2.2" />
+            <circle cx="32" cy="32" r="3.4" fill="currentColor" />
+            <g fill="currentColor">
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" />
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" transform="rotate(120 32 32)" />
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" transform="rotate(240 32 32)" />
+            </g>
+          </svg>
+          <div class="boot-brand-stack mono">
+            <span class="boot-brand-org">SCP FOUNDATION</span>
+            <span class="boot-brand-gate">SITE-19 GATE</span>
+          </div>
+        </div>
+
+        <div class="boot-warning-core">
+          <div class="boot-warning-headline">
+            <span class="boot-warning-led" aria-hidden="true"></span>
+            <span id="boot-warning-title" class="boot-warning-title mono">⚠ BERRYMAN-LANGFORD MEMETIC KILL AGENT ACTIVE // 模因抹杀触媒已激活</span>
+            <span class="boot-warning-led" aria-hidden="true"></span>
+          </div>
+          <div class="boot-warning-sub mono">UNAUTHORIZED VISUAL CONTACT TRIGGERS FATAL CARDIAC ARREST // 非授权视觉接触将触发致命性心脏骤停</div>
+        </div>
+
+        <button type="button" class="boot-bypass-btn mono" id="boot-bypass-btn" title="跳过模因校验直接进入终端">[BYPASS // 跳过校验]</button>
+      </header>
+
+      <!-- Full-Bleed Asymmetric 3-Column Terminal Workspace -->
+      <main class="boot-grid">
+        <!-- LEFT COLUMN: Classified Declaration & Live Kernel Stream -->
+        <aside class="boot-col boot-col-left" aria-label="基金会机密警告与内核核验流">
+          <span class="reticle tl" aria-hidden="true">⌜</span>
+          <span class="reticle tr" aria-hidden="true">⌝</span>
+          <span class="reticle bl" aria-hidden="true">⌞</span>
+          <span class="reticle br" aria-hidden="true">⌟</span>
+
+          <svg class="boot-left-watermark" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="32 10 32 10 32 10" transform="rotate(-18 32 32)" />
+            <circle cx="32" cy="32" r="14" fill="none" stroke="currentColor" stroke-width="2.2" />
+            <circle cx="32" cy="32" r="3.4" fill="currentColor" />
+            <g fill="currentColor">
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" />
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" transform="rotate(120 32 32)" />
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" transform="rotate(240 32 32)" />
+            </g>
+          </svg>
+
+          <div class="boot-panel-head mono">
+            <span>DOC-001 // CLASSIFIED DIRECTIVE</span>
+            <span class="boot-panel-tag">[LVL-0/5]</span>
+          </div>
+
+          <div class="boot-classified-block">
+            <div class="boot-classified-badge mono">RESTRICTED ACCESS // 绝密数据库</div>
+            <div class="boot-warning-giant">WARNING</div>
+            <div class="boot-warning-cn">绝密数据库 // 未经授权严禁访问</div>
+            <p class="boot-classified-en mono">
+              THE FOUNDATION DATABASE IS CLASSIFIED.<br />
+              UNAUTHORIZED PERSONNEL WILL BE TRACKED, LOCATED, AND DETAINED.
+            </p>
+            <p class="boot-classified-cn">非授权人员接入将触发自动追踪、定位与收容拘捕程序。</p>
+            <div class="boot-directive-chips mono">
+              <span>AGENT: BL-001</span>
+              <span>VACCINE: REQ</span>
+              <span class="is-crit">LETHAL: 99.8%</span>
+            </div>
+          </div>
+
+          <div class="boot-kernel-box">
+            <div class="boot-sub-head mono">
+              <span>SCiPNET KERNEL // 逆模因核验流</span>
+              <span class="boot-kernel-rate" id="boot-kernel-rate">HEX-SYNC</span>
+            </div>
+            <div class="boot-kernel-stream mono" id="boot-kernel-stream" aria-live="off"></div>
+          </div>
+        </aside>
+
+        <!-- CENTER COLUMN: Armored Memetic Optical Aperture & Biometric Hold Dock -->
+        <section class="boot-col boot-col-center" aria-label="模因催化视口与生命体征验证">
+          <div class="boot-memetic-frame" id="boot-memetic-frame">
+            <span class="boot-armor-corner tl" aria-hidden="true"></span>
+            <span class="boot-armor-corner tr" aria-hidden="true"></span>
+            <span class="boot-armor-corner bl" aria-hidden="true"></span>
+            <span class="boot-armor-corner br" aria-hidden="true"></span>
+
+            <div class="boot-edge-ruler top" aria-hidden="true"></div>
+            <div class="boot-edge-ruler bottom" aria-hidden="true"></div>
+            <div class="boot-edge-ruler left" aria-hidden="true"></div>
+            <div class="boot-edge-ruler right" aria-hidden="true"></div>
+
+            <div class="boot-hazard-stamp mono">HAZARD CLASS: COGNITO-LETHAL</div>
+
+            <div class="boot-frame-stamp boot-stamp-tl mono">AGENT // BL-001-GAMMA</div>
+            <div class="boot-frame-stamp boot-stamp-tr mono" id="boot-memetic-freq">FREQ: 14.2 Hz</div>
+            <div class="boot-frame-stamp boot-stamp-bl mono" id="boot-inoc-status">INOCULATION: STANDBY</div>
+            <div class="boot-frame-stamp boot-stamp-br mono" id="boot-renderer-tag">OPTIC LOCK // GLSL</div>
+
+            <div class="boot-canvas-slot" id="boot-canvas-slot">
+              <canvas id="boot-memetic-canvas" aria-label="Berryman-Langford 模因抹杀触媒有机分形图案"></canvas>
+            </div>
+
+            <svg class="boot-aperture-hud" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <line x1="200" y1="12" x2="200" y2="388" class="boot-hud-crosshair" />
+              <line x1="12" y1="200" x2="388" y2="200" class="boot-hud-crosshair" />
+              <circle cx="200" cy="200" r="184" class="boot-hud-outer-ring" />
+              <circle cx="200" cy="200" r="168" class="boot-hud-dashed-ring" />
+              <circle cx="200" cy="200" r="176" class="boot-hud-progress-track" />
+              <circle cx="200" cy="200" r="176" class="boot-hud-progress" id="boot-aperture-progress" pathLength="100" transform="rotate(-90 200 200)" />
+              <g class="boot-hud-chevrons">
+                <polyline points="200,26 194,36 206,36" />
+                <polyline points="200,374 194,364 206,364" />
+                <polyline points="26,200 36,194 36,206" />
+                <polyline points="374,200 364,194 364,206" />
+              </g>
+              <g class="boot-hud-ticks">
+                <line x1="200" y1="6" x2="200" y2="18" />
+                <line x1="200" y1="382" x2="200" y2="394" />
+                <line x1="6" y1="200" x2="18" y2="200" />
+                <line x1="382" y1="200" x2="394" y2="200" />
+                <line x1="63" y1="63" x2="73" y2="73" />
+                <line x1="337" y1="63" x2="327" y2="73" />
+                <line x1="63" y1="337" x2="73" y2="327" />
+                <line x1="337" y1="337" x2="327" y2="327" />
+              </g>
+            </svg>
+
+            <div class="boot-confirm-stamp mono" id="boot-confirm-stamp" aria-live="assertive">
+              <div class="boot-confirm-tag">[BIOMETRIC LOCK VERIFIED // AUDIO UNLOCKED]</div>
+              <div class="boot-confirm-title">LIFE SIGNS CONFIRMED</div>
+              <div class="boot-confirm-cn">生命体征已确认 — 欢迎接入 SITE-19</div>
+              <div class="boot-confirm-meta" id="boot-confirm-meta">CARDIAC: 148 BPM // INOCULATION: CONFIRMED // AUDIO: ON</div>
+            </div>
+          </div>
+
+          <div class="boot-controls">
+            <div class="boot-ecg-box">
+              <div class="boot-ecg-head mono">
+                <span class="boot-ecg-title">BIOMETRIC ECG // LEAD-II</span>
+                <div class="boot-ecg-metrics">
+                  <span class="boot-ecg-bpm" id="boot-ecg-bpm">72 BPM</span>
+                  <span class="boot-ecg-state" id="boot-ecg-state">STANDBY</span>
+                </div>
+              </div>
+              <div class="boot-ecg-canvas-wrap">
+                <canvas id="boot-ecg-canvas" aria-label="实时生命体征心电图波形"></canvas>
+              </div>
+            </div>
+
+            <div class="boot-hold-wrap">
+              <button type="button" class="boot-hold-btn mono" id="boot-hold-btn">
+                <span class="boot-hold-fill" id="boot-hold-fill" aria-hidden="true"></span>
+                <svg class="boot-hold-ring" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <rect class="boot-hold-ring-track" x="0.5" y="0.5" width="99" height="99" vector-effect="non-scaling-stroke" />
+                  <rect class="boot-hold-ring-progress" id="boot-hold-ring-progress" x="0.5" y="0.5" width="99" height="99" pathLength="100" vector-effect="non-scaling-stroke" />
+                </svg>
+                <span class="boot-hold-content">
+                  <span class="boot-hold-label" id="boot-hold-label">[ 按住 1.5s 验证生命体征 // HOLD TO AUTHENTICATE ]</span>
+                  <span class="boot-hold-pct" id="boot-hold-pct">00%</span>
+                </span>
+              </button>
+              <div class="boot-status-line mono" id="boot-status-line">BIOMETRIC LOCK ENGAGED // HOLD 1.5s TO CONFIRM CARDIAC ACTIVITY &amp; UNLOCK AUDIO</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT COLUMN: Biometric & Cognitohazard Neural Telemetry -->
+        <aside class="boot-col boot-col-right" aria-label="生物体征与认知危害遥测">
+          <span class="reticle tl" aria-hidden="true">⌜</span>
+          <span class="reticle tr" aria-hidden="true">⌝</span>
+          <span class="reticle bl" aria-hidden="true">⌞</span>
+          <span class="reticle br" aria-hidden="true">⌟</span>
+
+          <div class="boot-panel-head mono">
+            <span>BIO-COG // 认知危害遥测</span>
+            <span class="boot-live-pill">LIVE</span>
+          </div>
+
+          <div class="boot-telem-card">
+            <div class="boot-telem-head mono">
+              <span class="boot-telem-title">OPTIC NERVE LOAD // 视神经负荷</span>
+              <span class="boot-telem-state" id="boot-optic-state">ELEVATED</span>
+            </div>
+            <div class="boot-telem-metric-row mono">
+              <span class="boot-telem-big" id="boot-optic-val">38.4%</span>
+              <span class="boot-telem-unit">RETINAL FLUX</span>
+            </div>
+            <div class="boot-led-bar" id="boot-optic-led-bar" aria-hidden="true"></div>
+            <div class="boot-optic-bars" id="boot-optic-bars" aria-hidden="true"></div>
+          </div>
+
+          <div class="boot-telem-card">
+            <div class="boot-telem-head mono">
+              <span class="boot-telem-title">COGNITIVE RESISTANCE // 认知抗性</span>
+              <span class="boot-telem-state" id="boot-cog-state">NOMINAL</span>
+            </div>
+            <div class="boot-telem-metric-row mono">
+              <span class="boot-telem-big" id="boot-cog-val">84.2%</span>
+              <span class="boot-telem-unit">CORTEX BARRIER</span>
+            </div>
+            <div class="boot-dual-bars mono">
+              <div class="boot-bar-row">
+                <span class="boot-bar-lbl">BASE SHIELD</span>
+                <div class="boot-bar-track"><div class="boot-bar-fill is-amber" id="boot-cog-bar-base" style="width: 84%;"></div></div>
+              </div>
+              <div class="boot-bar-row">
+                <span class="boot-bar-lbl">COUNTER-MEME</span>
+                <div class="boot-bar-track"><div class="boot-bar-fill is-cold" id="boot-cog-bar-shield" style="width: 12%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="boot-telem-card">
+            <div class="boot-telem-head mono">
+              <span class="boot-telem-title">MEMETIC INOCULATION // 疫苗接种状态</span>
+              <span class="boot-telem-state" id="boot-inoc-badge">STANDBY</span>
+            </div>
+            <div class="boot-inoc-meter mono">
+              <div class="boot-bar-track"><div class="boot-bar-fill is-inoc" id="boot-inoc-bar" style="width: 0%;"></div></div>
+              <span class="boot-inoc-pct" id="boot-inoc-pct">00%</span>
+            </div>
+            <div class="boot-neural-grid mono">
+              <div class="boot-neural-cell">
+                <span>CORTEX SYNC</span>
+                <b id="boot-cortex-sync">14.2 Hz</b>
+              </div>
+              <div class="boot-neural-cell">
+                <span>PUPIL LOCK</span>
+                <b id="boot-pupil-val">3.4 mm</b>
+              </div>
+              <div class="boot-neural-cell">
+                <span>SYNAPTIC DRIFT</span>
+                <b id="boot-synaptic-val">+0.18 mV</b>
+              </div>
+            </div>
+          </div>
+
+          <div class="boot-telem-card boot-gateway-card">
+            <div class="boot-telem-head mono">
+              <span class="boot-telem-title">SITE-19 GATEWAY // 节点路由</span>
+              <span class="boot-telem-state is-ok">LINKED</span>
+            </div>
+            <div class="boot-gateway-rows mono">
+              <div class="boot-gw-row"><span>NODE</span><b>SITE-19 // SEC-04</b></div>
+              <div class="boot-gw-row"><span>LINK</span><b>SCiPNET AES-512</b></div>
+              <div class="boot-gw-row"><span>SESSION</span><b id="boot-gw-session">S#01</b></div>
+              <div class="boot-gw-row"><span>LATENCY</span><b id="boot-gw-latency">11.2 ms</b></div>
+              <div class="boot-gw-row"><span>ROUTE</span><b>BL-001 -&gt; VAX -&gt; S19</b></div>
+            </div>
+          </div>
+        </aside>
+      </main>
+
+      <!-- Bottom Calibration Ruler & Hazard Trim -->
+      <footer class="boot-bottom-frame" aria-hidden="true">
+        <div class="boot-ruler-strip boot-ruler-bottom mono">
+          <span>SCiPNET GATEWAY v4.9 // COGNITOHAZARD CONTAINMENT ACTIVE</span>
+          <span id="boot-bottom-clock">2026-11-24 00:00:00 UTC</span>
+          <span>MEMETIC FILTER: ARMED</span>
+        </div>
+        <div class="boot-hazard-trim boot-hazard-trim-bottom"></div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Terminal Shell -->
+  <div class="terminal-shell">
+    <!-- TOP STATUS BAR -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <div class="scp-brand">
+          <!-- Crisp Industrial SCP Emblem SVG -->
+          <svg class="scp-logo" viewBox="0 0 64 64" width="34" height="34" aria-hidden="true">
+            <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="32 10 32 10 32 10" transform="rotate(-18 32 32)" />
+            <circle cx="32" cy="32" r="14" fill="none" stroke="currentColor" stroke-width="2.2" />
+            <circle cx="32" cy="32" r="3.2" fill="currentColor" />
+            <!-- Three inward directional arrows -->
+            <g fill="currentColor">
+              <!-- Top arrow -->
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" />
+              <!-- Bottom-right arrow -->
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" transform="rotate(120 32 32)" />
+              <!-- Bottom-left arrow -->
+              <polygon points="32,20 27.5,12 30.2,12 30.2,4 33.8,4 33.8,12 36.5,12" transform="rotate(240 32 32)" />
+            </g>
+          </svg>
+          <div class="brand-text">
+            <div class="brand-title mono">SCP FOUNDATION <span class="brand-sep">//</span> SCiPNET</div>
+            <div class="brand-sub">控制 · 收容 · 保护 <span class="mono">// SECURE ARCHIVE NODE v4.9</span></div>
+          </div>
+        </div>
+
+        <div class="top-divider"></div>
+
+        <div class="station-block">
+          <span class="station-label mono">FACILITY</span>
+          <div class="station-value mono">
+            <span class="status-led nominal" id="site-led"></span>
+            SITE-19 <span class="station-sub">[SECTOR-04]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-bar-center">
+        <div class="clock-block">
+          <span class="clock-label mono">SYSTEM TIME // UTC SYNC</span>
+          <div class="clock-readout mono" id="utc-clock">2026-11-20 00:00:00.000 UTC</div>
+        </div>
+      </div>
+
+      <div class="top-bar-right">
+        <div class="clearance-module">
+          <div class="clearance-meta">
+            <span class="clearance-label mono">SECURITY CLEARANCE</span>
+            <span class="clearance-tag mono" id="clearance-badge">LVL-1 // RESTRICTED</span>
+          </div>
+          <div class="clearance-switcher" role="radiogroup" aria-label="安全权限切换器">
+            <button type="button" class="clr-btn active mono" data-level="1" aria-checked="true" title="基础访问权限 (快捷键: 1)">
+              <span class="clr-pip"></span>LEVEL 1
+            </button>
+            <button type="button" class="clr-btn mono" data-level="3" aria-checked="false" title="机密研究权限 (快捷键: 3)">
+              <span class="clr-pip"></span>LEVEL 3
+            </button>
+            <button type="button" class="clr-btn mono" data-level="5" aria-checked="false" title="O5 最高覆写权限 (快捷键: 5)">
+              <span class="clr-pip"></span>LEVEL 5
+            </button>
+          </div>
+        </div>
+
+        <div class="top-divider top-divider-compact"></div>
+
+        <button type="button" class="top-ctrl-btn audio-btn active mono" id="audio-toggle-btn" aria-pressed="true" title="切换终端合成音效">
+          [AUDIO: ON]
+        </button>
+
+        <button type="button" class="top-ctrl-btn breach-btn mono" id="breach-toggle-btn" aria-pressed="false" title="触发或解除全站收容失效警报">
+          <span class="breach-btn-inner">⚠ BREACH</span>
+        </button>
+
+        <button type="button" class="top-ctrl-btn lock-btn mono" id="boot-lock-btn" title="锁定终端并重新启动模因准入验证">
+          <svg class="lock-icon" viewBox="0 0 14 14" width="11" height="11" aria-hidden="true">
+            <rect x="2.5" y="6.2" width="9" height="6.3" fill="none" stroke="currentColor" stroke-width="1.4" />
+            <path d="M4.5 6.2V4.3a2.5 2.5 0 0 1 5 0v1.9" fill="none" stroke="currentColor" stroke-width="1.4" />
+            <rect x="6.4" y="8.4" width="1.2" height="2" fill="currentColor" />
+          </svg>
+          <span>[LOCK]</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN 3-COLUMN WORKSPACE -->
+    <main class="terminal-grid">
+      <!-- LEFT SIDEBAR: ARCHIVE INDEX -->
+      <aside class="panel sidebar-panel" aria-label="异常档案索引">
+        <span class="reticle tl" aria-hidden="true">⌜</span>
+        <span class="reticle tr" aria-hidden="true">⌝</span>
+        <span class="reticle bl" aria-hidden="true">⌞</span>
+        <span class="reticle br" aria-hidden="true">⌟</span>
+
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <span class="panel-code mono">MOD-01</span>
+            <h2 class="panel-title">异常档案索引</h2>
+          </div>
+          <span class="panel-count mono" id="archive-count">03/03</span>
+        </div>
+
+        <div class="sidebar-controls">
+          <div class="search-box">
+            <span class="search-prefix mono">&gt;</span>
+            <input type="text" id="archive-search" class="mono" placeholder="SEARCH ID / TITLE..." autocomplete="off" />
+          </div>
+          <div class="class-filters" role="group" aria-label="按收容等级筛选">
+            <button type="button" class="filter-btn active mono" data-filter="ALL">ALL</button>
+            <button type="button" class="filter-btn mono" data-filter="SAFE">SAFE</button>
+            <button type="button" class="filter-btn mono" data-filter="EUCLID">EUCLID</button>
+            <button type="button" class="filter-btn mono" data-filter="KETER">KETER</button>
+          </div>
+        </div>
+
+        <nav class="archive-list" id="archive-list" aria-label="SCP 档案列表">
+          <!-- Rendered via JS -->
+        </nav>
+
+        <div class="sidebar-footer mono">
+          <div class="footer-row">
+            <span>NET LINK</span>
+            <span class="text-amber">ENCRYPTED [AES-512]</span>
+          </div>
+          <div class="footer-row">
+            <span>HOTKEYS</span>
+            <span>[1/3/5] LVL · [↑/↓] FILE</span>
+          </div>
+          <div class="footer-row footer-row-memory">
+            <span class="memory-session-tag" id="memory-session-tag">MEM // S#01</span>
+            <button type="button" class="purge-memory-btn mono" id="purge-memory-btn" title="清除所有本地持久化实验记录并重启终端">[PURGE MEMORY]</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER VIEWPORT: CLASSIFIED DOSSIER READER -->
+      <section class="panel reader-panel" aria-label="机密档案阅读器">
+        <span class="reticle tl" aria-hidden="true">⌜</span>
+        <span class="reticle tr" aria-hidden="true">⌝</span>
+        <span class="reticle bl" aria-hidden="true">⌞</span>
+        <span class="reticle br" aria-hidden="true">⌟</span>
+
+        <div class="panel-header reader-header-bar">
+          <div class="panel-title-group">
+            <span class="panel-code mono">MOD-02</span>
+            <h2 class="panel-title">机密档案阅读器</h2>
+            <span class="reader-file-path mono" id="reader-file-path">/SITE-19/ARCHIVES/SCP-173.DAT</span>
+          </div>
+          <div class="reader-toolbar">
+            <span class="decrypt-counter mono" id="decrypt-counter">DECRYPTED: 0/0</span>
+            <button type="button" class="mini-action-btn mono" id="replay-scramble-btn" title="重新执行当前权限下的乱码破译动画">
+              RE-DECODE
+            </button>
+          </div>
+        </div>
+
+        <!-- Access Denial Toast Banner -->
+        <div class="access-banner mono" id="access-banner" role="alert" aria-live="polite">
+          <span class="banner-tag">SYS //</span>
+          <span id="access-banner-text">TERMINAL READY</span>
+        </div>
+
+        <article class="dossier-scroll" id="dossier-content">
+          <!-- Rendered dynamically by app.js -->
+        </article>
+      </section>
+
+      <!-- RIGHT TELEMETRY RAIL -->
+      <aside class="telemetry-rail" aria-label="实时遥测监控">
+        <!-- MODULE 3A: HUME INDEX OSCILLOSCOPE -->
+        <section class="panel telemetry-module hume-module">
+          <span class="reticle tl" aria-hidden="true">⌜</span>
+          <span class="reticle tr" aria-hidden="true">⌝</span>
+          <span class="reticle bl" aria-hidden="true">⌞</span>
+          <span class="reticle br" aria-hidden="true">⌟</span>
+
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <span class="panel-code mono">KANT-01</span>
+              <h2 class="panel-title">休谟指数遥测</h2>
+            </div>
+            <button type="button" class="mini-action-btn mono" id="kant-ping-btn" title="向康德计数器发送校准脉冲">
+              PING
+            </button>
+          </div>
+
+          <div class="hume-readout-grid mono">
+            <div class="hume-primary">
+              <span class="metric-sublabel">LOCAL HUME</span>
+              <div class="hume-big-val" id="hume-current">1.22 <span class="unit">Hm</span></div>
+            </div>
+            <div class="hume-stats">
+              <div class="stat-line">
+                <span>DELTA</span>
+                <span id="hume-delta">+0.22 Hm</span>
+              </div>
+              <div class="stat-line">
+                <span>PEAK</span>
+                <span id="hume-peak">1.31 Hm</span>
+              </div>
+              <div class="stat-line">
+                <span>STATE</span>
+                <span id="hume-state" class="state-nominal">NOMINAL</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="canvas-frame">
+            <canvas id="hume-canvas"></canvas>
+            <div class="canvas-overlay-tag mono" id="canvas-mode-tag">LIVE 60Hz // KANT-ARRAY</div>
+          </div>
+
+          <div class="hume-legend mono">
+            <span><i class="leg-dot base"></i>BASE 1.00</span>
+            <span><i class="leg-dot warn"></i>WARN <b id="leg-warn">1.48</b></span>
+            <span><i class="leg-dot crit"></i>CRIT <b id="leg-crit">1.75</b></span>
+          </div>
+        </section>
+
+        <!-- MODULE 3B: CHAMBER ENVIRONMENT MONITOR -->
+        <section class="panel telemetry-module env-module">
+          <span class="reticle tl" aria-hidden="true">⌜</span>
+          <span class="reticle tr" aria-hidden="true">⌝</span>
+          <span class="reticle bl" aria-hidden="true">⌞</span>
+          <span class="reticle br" aria-hidden="true">⌟</span>
+
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <span class="panel-code mono">ENV-02</span>
+              <h2 class="panel-title">收容室环境参数</h2>
+            </div>
+            <span class="panel-count mono" id="env-cell-id">CELL-173-A</span>
+          </div>
+
+          <!-- Anomaly-specific special telemetry banner -->
+          <div class="special-telemetry" id="special-telemetry">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <div class="env-metrics-list" id="env-metrics">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- MODULE 3C: TERMINAL AUDIT LOG -->
+        <section class="panel telemetry-module log-module">
+          <span class="reticle tl" aria-hidden="true">⌜</span>
+          <span class="reticle tr" aria-hidden="true">⌝</span>
+          <span class="reticle bl" aria-hidden="true">⌞</span>
+          <span class="reticle br" aria-hidden="true">⌟</span>
+
+          <div class="panel-header">
+            <div class="panel-title-group">
+              <span class="panel-code mono">SYS-LOG</span>
+              <h2 class="panel-title">终端事件日志</h2>
+            </div>
+            <span class="live-tag mono">LIVE</span>
+          </div>
+
+          <div class="audit-log mono" id="audit-log">
+            <!-- Populated via JS -->
+          </div>
+
+          <form class="syslog-cli mono" id="syslog-cli-form" autocomplete="off">
+            <label class="syslog-cli-prompt" for="syslog-cli-input">SCiP&gt;<span class="syslog-cli-cursor" aria-hidden="true">_</span></label>
+            <input
+              type="text"
+              id="syslog-cli-input"
+              class="syslog-cli-input mono"
+              placeholder="TYPE 'HELP'..."
+              spellcheck="false"
+              autocomplete="off"
+              aria-label="SYS-LOG 嵌入式终端命令行"
+            />
+          </form>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Bottom Containment Breach Evacuation Banner -->
+  <div class="breach-ticker" id="breach-ticker" role="alert" aria-live="assertive" aria-hidden="true">
+    <div class="breach-ticker-track mono">
+      <span>⚠ WARNING: SITE-19 CONTAINMENT BREACH // MTF EPSILON-11 ("NINE-TAILED FOX") DEPLOYED // LOCKDOWN PROTOCOL ALPHA ACTIVE // ALL PERSONNEL EVACUATE IMMEDIATELY ⚠</span>
+      <span>⚠ WARNING: SITE-19 CONTAINMENT BREACH // MTF EPSILON-11 ("NINE-TAILED FOX") DEPLOYED // LOCKDOWN PROTOCOL ALPHA ACTIVE // ALL PERSONNEL EVACUATE IMMEDIATELY ⚠</span>
+    </div>
+  </div>
+
+  <script src="./data.js"></script>
+  <script src="./sessionStore.js"></script>
+  <script src="./soundEngine.js"></script>
+  <script src="./bootScreen.js"></script>
+  <script src="./liveViewport.js"></script>
+  <script src="./viewport173.js"></script>
+  <script src="./viewport914.js"></script>
+  <script src="./viewport682.js"></script>
+  <script src="./hijack079.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
